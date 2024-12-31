@@ -1,0 +1,183 @@
+<!-- templates/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - CDRN</title>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        /* Custom Styles */
+        body {
+            background-color: #f4f4f4; /* Very light gray */
+            color: #333; /* Dark Gray for text */
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #003366; /* Dark Navy Blue */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: 500;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #d11187 !important; /* Bright Orange on hover */
+        }
+
+        .hero {
+            position: relative;
+            background-image: url('https://via.placeholder.com/1600x600/003366/ffffff?text=Community+Disaster+Response');
+            background-size: cover;
+            background-position: center;
+            color: rgba(19, 19, 19, 0.79);
+            padding: 100px 0;
+            text-shadow: 2px 2px 5px rgba(98, 96, 96, 0.5);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay for better contrast */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.6rem;
+        }
+
+        .cta-button {
+            background-color: #000e8d; /* Bright Orange */
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            background-color: #001994; /* Dark Navy Blue on hover */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #003366; /* Dark Navy Blue */
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        footer {
+            background-color: #003366; /* Dark Navy Blue */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-link {
+            color: #009688; /* Light Teal for footer links */
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <div class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'home' %}">CDRN</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'report_incident' %}">Report Incident</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'donate_resource' %}">Donate Resource</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'register_volunteer' %}">Register Volunteer</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'donate_blood' %}">Donate Blood</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'incident_list' %}">View Incidents</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'resource_list' %}">View Resources</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'volunteer_list' %}">View Volunteers</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'blood_donation_list' %}">Blood Donation</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero text-center">
+        <div class="hero-content">
+            <div class="container">
+                <h1>Welcome to the Community Disaster Response Network</h1>
+                <p class="lead">Together, we can make a difference by providing resources, volunteering, and reporting incidents during disasters.</p>
+                <a href="{% url 'report_incident' %}" class="cta-button">Get Involved</a>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <div class="container text-center">
+            <h2>Why CDRN Matters</h2>
+            <p>The Community Disaster Response Network connects individuals, organizations, and local authorities to quickly address critical needs during disasters. Your participation can help save lives and provide support where it's needed most.</p>
+            <a href="{% url 'register_volunteer' %}" class="btn btn-lg btn-primary">Register as a Volunteer</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 CDRN - Community Disaster Response Network | <a href="#" class="footer-link">Privacy Policy</a> | <a href="#" class="footer-link">Terms & Conditions</a></p>
+    </footer>
+
+    <!-- Bootstrap JS and Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

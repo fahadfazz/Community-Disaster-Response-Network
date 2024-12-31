@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static widget_tweaks %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Incident</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJr+MqXjQqjNuOh8rH7Lz6D2rH8d5Sv0RQw3yRHp/nlmxh6kNlzWV88Tt1Ex" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Report an Incident</h1>
+        <form method="POST" enctype="multipart/form-data" class="shadow p-4 bg-light rounded">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        
+            <div class="mb-3">
+                <label for="id_name" class="form-label">Incident Name</label>
+                {{ form.name|add_class:"form-control" }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_description" class="form-label">Description</label>
+                {{ form.description|add_class:"form-control" }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_location" class="form-label">Location</label>
+                {{ form.location|add_class:"form-control" }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_status" class="form-label">Status</label>
+                {{ form.status|add_class:"form-select" }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_image" class="form-label">Upload Photo (Optional)</label>
+                {{ form.image|add_class:"form-control" }}
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+
+        {% if incident.image %}
+            <div class="mt-4">
+                <h4>Uploaded Image:</h4>
+                <img src="{{ incident.image.url }}" alt="Incident Image" class="img-fluid mt-3">
+            </div>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gyb28UoIw5R0mmLGMpZzGnN75JlnDL61HvbHce0y4z6bftI5Bvw" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0g0Y4hP9rT61C9prG6jefzVY2lMK5FSt6FzEZm7vRZbd2a8QS" crossorigin="anonymous"></script>
+</body>
+</html>

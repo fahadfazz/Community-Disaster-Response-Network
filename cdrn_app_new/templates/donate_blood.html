@@ -1,0 +1,106 @@
+<!-- templates/donate_blood.html -->
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Blood</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        /* Global Styling */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Heading Styling */
+h1 {
+    color: #08775f;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Incident and Donation Cards */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Card Hover Effects */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Styling */
+.btn-success {
+    background-color: #28a745;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+/* Custom Card Body */
+.card-body {
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+/* Card Titles */
+.card-title {
+    font-size: 1.25rem;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Card Text */
+.card-text {
+    color: #555;
+    font-size: 1rem;
+}
+
+/* Form Styling */
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Labels and Input Fields */
+input, textarea, select {
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Blood Donation</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
